@@ -1,31 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Checkbox, Form, Input } from "antd";
 
-const ModalClass = (showModal) => {
+import { useSelector, useDispatch } from "react-redux";
+import classAction from "~/redux/action/actionClass";
+
+const ModalClass = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // const showModal = () => {
-  //   setIsModalVisible(true);
-  //   console.log("123");
-  // };
-  // setIsModalVisible(showModal);
-  useEffect(() => {
-    setIsModalVisible(true);
-    console.log(showModal);
-  }, [showModal]);
+  // console.log("props", props);
+
+  //redux
+  const dispatch = useDispatch();
+
+  const classReducer = useSelector((state) => state.Class);
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    dispatch(classAction.activeAddClassModal(false));
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    dispatch(classAction.activeAddClassModal(false));
   };
+
+  console.log("modal re-render");
+
+  // const details = [
+  //   { label: "ID", name: "id" },
+  //   { label: "Name", name: "name" },
+  //   { label: "Number Student", name: "numStu" },
+  // ];
+
   return (
     <div>
       <Modal
         title="Add infomation class"
-        visible={isModalVisible}
+        visible={classReducer.activeAddModal}
         onOk={handleOk}
         onCancel={handleCancel}
       >
@@ -44,42 +53,20 @@ const ModalClass = (showModal) => {
           // onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item
-            label="ID"
-            name="id"
-            rules={[
-              {
-                required: false,
-                message: "Please input class id!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Name:"
-            name="name"
-            rules={[
-              {
-                required: false,
-                message: "Please input class name!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Number Student:"
-            name="numStu"
-            rules={[
-              {
-                required: false,
-                message: "Please input number student!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+          {/* {info.map((item, key) => (
+            <Form.Item
+              label={item.label}
+              name={item.name}
+              rules={[
+                {
+                  required: false,
+                  message: "Please input class id!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          ))} */}
         </Form>
       </Modal>
     </div>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import TableClass from "./TableClass";
 
-import { PlusOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { Button, Modal, Checkbox, Form, Input } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import {
   ClassWrapper,
   ClassTitle,
@@ -12,12 +12,21 @@ import {
 } from "./style";
 import ModalClass from "./ModalClass";
 
+import { useSelector, useDispatch } from "react-redux";
+import classAction from "~/redux/action/actionClass";
+
 const Class = () => {
+  const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  //redux
+  const classReducer = useSelector((state) => state.Class);
+
   const showModal = () => {
-    setIsModalVisible(true);
+    dispatch(classAction.activeAddClassModal(true));
   };
+
+  console.log("class re-render");
 
   return (
     <ClassWrapper>
@@ -31,7 +40,8 @@ const Class = () => {
         >
           Add
         </Button>
-        <ModalClass isModalVisible={isModalVisible} />
+        {/* <ModalClass isModalVisible={isModalVisible} /> */}
+        <ModalClass />
       </ButtonAction>
       <ClassContainer>
         <TableClass />

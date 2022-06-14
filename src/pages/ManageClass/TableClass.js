@@ -1,12 +1,14 @@
 import React from "react";
 import { Space, Table, Button } from "antd";
-import "antd/dist/antd.css";
-
 import {
   EditOutlined,
   DeleteOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
+
+import ModalClass from "./ModalClass";
+
+import "antd/dist/antd.css";
 
 const { Column } = Table;
 const data = [
@@ -45,6 +47,7 @@ const TableClass = () => (
           >
             Edit
           </Button>
+          <ModalClass />
           <Button
             type="primary"
             icon={<DeleteOutlined />}
