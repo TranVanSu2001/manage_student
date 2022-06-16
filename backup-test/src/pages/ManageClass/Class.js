@@ -10,14 +10,13 @@ import {
   ButtonAction,
   ButtonFunc,
 } from "./style";
-import ModalClass from "./ModalClass";
+import ModalClass from "~/components/Modal/Modal";
 
 import { useSelector, useDispatch } from "react-redux";
 import classAction from "~/redux/action/actionClass";
 
 const Class = () => {
   const dispatch = useDispatch();
-  console.log("re-render");
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   //redux
@@ -27,11 +26,14 @@ const Class = () => {
     dispatch(classAction.activeAddClassModal(true));
   };
 
-  const infoAddModal = [
-    { label: "ID", name: "id" },
-    { label: "Name", name: "name" },
-    { label: "Number Student", name: "numStu" },
-  ];
+  const modalClassInfomation = {
+    details: [
+      { label: "ID", name: "id" },
+      { label: "Name", name: "name" },
+      { label: "Number Student", name: "numStu" },
+    ],
+    title: "Add infomation class",
+  };
 
   return (
     <ClassWrapper>
@@ -45,8 +47,7 @@ const Class = () => {
         >
           Add
         </Button>
-        {/* <ModalClass info={infoAddModal} /> */}
-        <ModalClass />
+        <ModalClass modalClassInfomation={modalClassInfomation} />
       </ButtonAction>
       <ClassContainer>
         <TableClass />

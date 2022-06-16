@@ -68,8 +68,6 @@ const TableClass = () => {
               >
                 Edit
               </Button>
-              <ModalClass modalTableClass={modalTableClass} />
-
               <Button
                 type="primary"
                 icon={<DeleteOutlined />}
