@@ -23,7 +23,6 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  // getItem("Home", "1", <AiFillHome />),
   getItem(
     "Home",
     "1",
@@ -31,11 +30,6 @@ const items = [
       <AiFillHome />
     </Link>
   ),
-  // getItem("Manage", "sub1", <AiOutlineUnorderedList />, [
-  //   getItem("Class", "2"),
-  //   getItem("Student", "3"),
-  //   getItem("Subject", "4"),
-  // ]),
   getItem(
     "Manage",
     "sub1",

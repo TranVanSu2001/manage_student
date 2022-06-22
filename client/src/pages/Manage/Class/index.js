@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import TableClass from "./TableClass";
 
 import { PlusOutlined } from "@ant-design/icons";
@@ -8,32 +9,23 @@ import {
   ClassTitle,
   ClassContainer,
   ButtonAction,
-  ButtonFunc,
 } from "./style";
-import ModalClass from "~/components/Modal/Modal";
-import Header from "~/pages/HomePage/Header/Header";
+import ModalAddClass from "./Modal/ModalAddClass";
 
 import { useSelector, useDispatch } from "react-redux";
 import classAction from "~/redux/action/actionClass";
 
 const Class = () => {
-  const dispatch = useDispatch();
+  //react hook
+  //modal
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   //redux
+  const dispatch = useDispatch();
   const classReducer = useSelector((state) => state.Class);
 
   const showModal = () => {
     dispatch(classAction.activeAddClassModal(true));
-  };
-
-  const modalClassInfomation = {
-    details: [
-      { label: "ID", name: "id" },
-      { label: "Name", name: "name" },
-      { label: "Number Student", name: "numStu" },
-    ],
-    title: "Add infomation class",
   };
 
   return (
@@ -48,7 +40,7 @@ const Class = () => {
         >
           Add
         </Button>
-        <ModalClass modalClassInfomation={modalClassInfomation} />
+        <ModalAddClass></ModalAddClass>
       </ButtonAction>
       <ClassContainer>
         <TableClass />

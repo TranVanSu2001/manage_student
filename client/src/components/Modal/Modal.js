@@ -14,6 +14,7 @@ const ModalClass = (props) => {
   useEffect(() => {}, []);
 
   const handleOk = () => {
+    //submit info class to backend
     dispatch(classAction.activeAddClassModal(false));
   };
 
