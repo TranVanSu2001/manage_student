@@ -24,6 +24,16 @@ app.get("/class/getClass", (req, res) => {
   });
 });
 
+app.get("/class/getListId", (req, res) => {
+  db.query("select id from class", (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+
+    res.send(result);
+  });
+});
+
 app.post("/class/add", (req, res) => {
   const id = req.body.id;
   const name = req.body.name;

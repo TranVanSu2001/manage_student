@@ -30,6 +30,15 @@ const ModalAddClass = () => {
     setName("");
     setNumOfStu("");
     dispatch(classAction.activeAddClassModal(false));
+
+    var listID = [];
+
+    Axios.get("http://localhost:3001/class/getListId").then((data) => {
+      console.log("data: ", data.data);
+      listID = data.data;
+    });
+
+    console.log("list id:", listID);
   };
 
   const handleCancel = () => {
@@ -60,7 +69,6 @@ const ModalAddClass = () => {
       >
         <Form.Item
           label="ID"
-          name="id"
           rules={[
             {
               required: true,
@@ -73,11 +81,11 @@ const ModalAddClass = () => {
             onChange={(e) => {
               setId(e.target.value);
             }}
+            value={id}
           />
         </Form.Item>
         <Form.Item
           label="Name"
-          name="name"
           rules={[
             {
               required: true,
@@ -90,11 +98,11 @@ const ModalAddClass = () => {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            value={name}
           />
         </Form.Item>
         <Form.Item
           label="Number Student"
-          name="numOfStu"
           rules={[
             {
               required: true,
@@ -107,6 +115,7 @@ const ModalAddClass = () => {
             onChange={(e) => {
               setNumOfStu(e.target.value);
             }}
+            value={numOfStu}
           />
         </Form.Item>
       </Form>
